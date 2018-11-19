@@ -21,10 +21,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if(v.getText().toString().matches("^(https|www|http).+")){
-                    error.setText("");
+                     error.setText("");
                      String url = url_field.getText().toString();
                      Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                     startActivity(i);
+                     try{
+                         startActivity(i);
+                     }catch(Exception e){
+                         error.setText("enter a valid url starting with http(s) or www");
+                     }
+
 
 
                 }else{
